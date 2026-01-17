@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://carbq88q5gowj"]
+
+[ext_resource type="Script" uid="uid://ctirhttl5h5be" path="res://area_2d.gd" id="1_jwo5k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bhbw"]
+size = Vector2(32, 32)
+
+[node name="Area2D" type="Area2D"]
+z_index = 10
+script = ExtResource("1_jwo5k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_0bhbw")

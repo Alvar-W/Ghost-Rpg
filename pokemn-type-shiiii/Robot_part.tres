@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://du6y30enyd7c5"]
+
+[ext_resource type="Script" uid="uid://yueai8c6i8jb" path="res://ItemData.gd" id="1_01plt"]
+[ext_resource type="Texture2D" uid="uid://dvsmi6gkm7rql" path="res://Placeholder32x32.png" id="1_pd1jt"]
+
+[resource]
+script = ExtResource("1_01plt")
+name = "Robot"
+icon = ExtResource("1_pd1jt")
+category = "robot_parts"
+sort_tag = "robot_part"
+item_type = "robot"
+description = "A very good robot thingy that you can put spirits in and it is veri nice"
+metadata/_custom_type_script = "uid://yueai8c6i8jb"
