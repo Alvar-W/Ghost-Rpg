@@ -20,4 +20,4 @@ func _input_event(viewport, event, shape_idx):
 		player.add_item(item_data)
 		queue_free()
 
-#testiasiaa gitin takia
+#testiasiaa gitin takia paapaa
