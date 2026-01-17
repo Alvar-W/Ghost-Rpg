@@ -19,5 +19,3 @@ func _input_event(viewport, event, shape_idx):
 		var player = get_tree().get_first_node_in_group("player")
 		player.add_item(item_data)
 		queue_free()
-
-#testiasiaa gitin takia paapaa
