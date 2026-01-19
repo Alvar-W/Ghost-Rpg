@@ -14,6 +14,8 @@ var equipped_battle := [null, null, null]
 var equipped_robot := [null, null, null]
 var selected_slot: Control = null
 @export var dropped_item_scene: PackedScene
+@export var PauseMenuUI: Control
+@export var Opened_Menu: bool = false
 
 func spawn_dropped_item(item: ItemData):
 	var drop = dropped_item_scene.instantiate()
@@ -30,6 +32,10 @@ func get_random_drop_offset() -> Vector2:
 func _input(event):
 	if event.is_action_pressed("inventory"):
 		inventory_ui.visible = !inventory_ui.visible
+		Opened_Menu = !Opened_Menu
+	if event.is_action_pressed("ui_cancel"):
+		PauseMenuUI.visible = !PauseMenuUI.visible
+		Opened_Menu = !Opened_Menu
 
 func show_item_details(item: ItemData, slot):
 	selected_item = item
@@ -101,35 +107,35 @@ func _ready():
 
 func _physics_process(delta):
 	var input_dir = Vector2.ZERO
+	if not Opened_Menu:
+		if Input.is_key_pressed(KEY_D):
+			input_dir.x += 1
+		if Input.is_key_pressed(KEY_A):
+			input_dir.x -= 1
+		if Input.is_key_pressed(KEY_S):
+			input_dir.y += 1
+		if Input.is_key_pressed(KEY_W):
+			input_dir.y -= 1
 
-	if Input.is_key_pressed(KEY_D):
-		input_dir.x += 1
-	if Input.is_key_pressed(KEY_A):
-		input_dir.x -= 1
-	if Input.is_key_pressed(KEY_S):
-		input_dir.y += 1
-	if Input.is_key_pressed(KEY_W):
-		input_dir.y -= 1
-
-	if input_dir != Vector2.ZERO:
-		if input_dir.y > 0:
-			if input_dir.x < 0:
-				last_dir = "down_left"
-			elif input_dir.x > 0:
-				last_dir = "down_right"
+		if input_dir != Vector2.ZERO:
+			if input_dir.y > 0:
+				if input_dir.x < 0:
+					last_dir = "down_left"
+				elif input_dir.x > 0:
+					last_dir = "down_right"
+				else:
+					last_dir = "down"
+			elif input_dir.y < 0:
+				if input_dir.x < 0:
+					last_dir = "up_left"
+				elif input_dir.x > 0:
+					last_dir = "up_right"
+				else:
+					last_dir = "up"
+			elif input_dir.x < 0:
+				last_dir = "left"
 			else:
-				last_dir = "down"
-		elif input_dir.y < 0:
-			if input_dir.x < 0:
-				last_dir = "up_left"
-			elif input_dir.x > 0:
-				last_dir = "up_right"
-			else:
-				last_dir = "up"
-		elif input_dir.x < 0:
-			last_dir = "left"
-		else:
-			last_dir = "right"
+				last_dir = "right"
 
 	if input_dir == Vector2.ZERO:
 		anim.play("idle_" + last_dir)
@@ -305,3 +311,24 @@ func _on_unequip_button_pressed() -> void:
 	update_inventory_ui("all")
 
 	hide_right_panel()
+
+
+func _on_continue_button_pressed() -> void:
+	PauseMenuUI.visible = !PauseMenuUI.visible
+	Opened_Menu = !Opened_Menu
+
+
+func _on_settings_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_save_game_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_load_game_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_quit_game_button_pressed() -> void:
+	pass # Replace with function body.

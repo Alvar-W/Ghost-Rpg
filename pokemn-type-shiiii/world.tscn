@@ -20,7 +20,6 @@
 [ext_resource type="Resource" uid="uid://du6y30enyd7c5" path="res://Robot_part.tres" id="17_ikiii"]
 [ext_resource type="Texture2D" uid="uid://dvsmi6gkm7rql" path="res://Placeholder32x32.png" id="19_26xuy"]
 [ext_resource type="Texture2D" uid="uid://dvcjnksnqtpqo" path="res://Scroll.png" id="19_cbp6q"]
-[ext_resource type="PackedScene" uid="uid://cdneo7qad3p6s" path="res://PauseMenu.tscn" id="21_bc84e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk2v"]
 texture = ExtResource("1_tlwt5")
@@ -1334,6 +1333,9 @@ font_color = Color(0, 0, 0, 1)
 shadow_size = 10
 shadow_color = Color(0.31363612, 0.23117113, 4.813075e-08, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_bc84e"]
+font_size = 70
+
 [node name="World" type="Node2D"]
 
 [node name="Water base" type="TileMapLayer" parent="."]
@@ -1347,11 +1349,12 @@ tile_set = SubResource("TileSet_036b0")
 [node name="Y_sort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Player" type="CharacterBody2D" parent="Y_sort" node_paths=PackedStringArray("inventory_ui")]
+[node name="Player" type="CharacterBody2D" parent="Y_sort" node_paths=PackedStringArray("inventory_ui", "PauseMenuUI")]
 script = ExtResource("2_aqk2v")
-inventory_ui = NodePath("../../UI/InventoryUI")
+inventory_ui = NodePath("../../InventoryUI/InventoryUI")
 slot_scene = ExtResource("3_ikiii")
 dropped_item_scene = ExtResource("14_udxuc")
+PauseMenuUI = NodePath("../../PauseMenuUI/PauseMenuUI")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Y_sort/Player"]
 position = Vector2(9.536743e-07, -12)
@@ -1394,9 +1397,9 @@ item_data = ExtResource("17_ikiii")
 position = Vector2(-120, -11)
 item_data = ExtResource("17_ikiii")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="InventoryUI" type="CanvasLayer" parent="."]
 
-[node name="InventoryUI" type="Panel" parent="UI"]
+[node name="InventoryUI" type="Panel" parent="InventoryUI"]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -1406,7 +1409,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Slot1" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot1" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 100.0
@@ -1415,7 +1418,7 @@ offset_right = 150.0
 offset_bottom = 145.0
 slot_type = "spirit"
 
-[node name="Slot2" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot2" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 210.0
@@ -1424,7 +1427,7 @@ offset_right = 260.0
 offset_bottom = 105.0
 slot_type = "spirit"
 
-[node name="Slot3" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot3" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 315.0
@@ -1433,7 +1436,7 @@ offset_right = 365.0
 offset_bottom = 145.0
 slot_type = "spirit"
 
-[node name="Slot4" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot4" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 100.0
@@ -1442,7 +1445,7 @@ offset_right = 150.0
 offset_bottom = 225.0
 slot_type = "robot"
 
-[node name="Slot5" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot5" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 210.0
@@ -1451,7 +1454,7 @@ offset_right = 260.0
 offset_bottom = 185.0
 slot_type = "robot"
 
-[node name="Slot6" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot6" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 315.0
@@ -1460,7 +1463,7 @@ offset_right = 365.0
 offset_bottom = 225.0
 slot_type = "robot"
 
-[node name="PlayerPreview" type="AnimatedSprite2D" parent="UI/InventoryUI"]
+[node name="PlayerPreview" type="AnimatedSprite2D" parent="InventoryUI/InventoryUI"]
 position = Vector2(88, 188)
 scale = Vector2(2.3203127, 2.1757815)
 sprite_frames = SubResource("SpriteFrames_qm10a")
@@ -1468,7 +1471,7 @@ autoplay = "default"
 frame_progress = 0.90866125
 centered = false
 
-[node name="Slot7" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot7" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 100.0
@@ -1477,7 +1480,7 @@ offset_right = 150.0
 offset_bottom = 550.0
 slot_type = "battle"
 
-[node name="Slot8" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot8" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 0
 offset_left = 210.0
@@ -1486,7 +1489,7 @@ offset_right = 260.0
 offset_bottom = 590.0
 slot_type = "battle"
 
-[node name="Slot9" parent="UI/InventoryUI" instance=ExtResource("3_ikiii")]
+[node name="Slot9" parent="InventoryUI/InventoryUI" instance=ExtResource("3_ikiii")]
 custom_minimum_size = Vector2(50, 48)
 layout_mode = 0
 offset_left = 315.0
@@ -1495,7 +1498,7 @@ offset_right = 365.0
 offset_bottom = 550.0
 slot_type = "battle"
 
-[node name="Tab_All" type="Button" parent="UI/InventoryUI"]
+[node name="Tab_All" type="Button" parent="InventoryUI/InventoryUI"]
 layout_mode = 0
 offset_left = 458.0
 offset_top = 52.0
@@ -1504,7 +1507,7 @@ offset_bottom = 92.0
 text = "All"
 icon = ExtResource("16_2u3nc")
 
-[node name="Tab_Robot_parts" type="Button" parent="UI/InventoryUI"]
+[node name="Tab_Robot_parts" type="Button" parent="InventoryUI/InventoryUI"]
 layout_mode = 0
 offset_left = 527.0
 offset_top = 51.0
@@ -1513,7 +1516,7 @@ offset_bottom = 91.0
 text = "Robot"
 icon = ExtResource("19_26xuy")
 
-[node name="Tab_Scrolls" type="Button" parent="UI/InventoryUI"]
+[node name="Tab_Scrolls" type="Button" parent="InventoryUI/InventoryUI"]
 layout_mode = 0
 offset_left = 632.0
 offset_top = 50.0
@@ -1522,7 +1525,7 @@ offset_bottom = 90.0
 text = "Scrolls"
 icon = ExtResource("19_cbp6q")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/InventoryUI"]
+[node name="ScrollContainer" type="ScrollContainer" parent="InventoryUI/InventoryUI"]
 custom_minimum_size = Vector2(263, 500)
 layout_mode = 1
 anchors_preset = 8
@@ -1537,194 +1540,194 @@ offset_bottom = 277.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="UI/InventoryUI/ScrollContainer"]
+[node name="GridContainer" type="GridContainer" parent="InventoryUI/InventoryUI/ScrollContainer"]
 custom_minimum_size = Vector2(240, 240)
 layout_mode = 2
 theme_override_constants/h_separation = 3
 theme_override_constants/v_separation = 3
 columns = 5
 
-[node name="InventorySlot" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot2" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot2" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot3" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot3" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot4" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot4" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot5" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot5" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot6" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot6" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot7" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot7" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot8" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot8" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot9" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot9" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot10" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot10" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot11" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot11" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot12" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot12" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot13" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot13" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot14" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot14" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot15" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot15" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot16" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot16" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot17" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot17" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot18" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot18" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot19" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot19" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot20" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot20" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot21" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot21" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot22" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot22" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot23" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot23" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot24" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot24" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot25" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot25" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot26" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot26" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot27" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot27" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot28" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot28" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot29" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot29" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot30" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot30" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot31" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot31" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot32" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot32" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot33" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot33" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot34" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot34" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot35" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot35" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot36" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot36" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot37" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot37" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot38" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot38" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot39" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot39" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot40" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot40" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot41" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot41" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot42" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot42" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot43" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot43" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot44" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot44" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot45" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot45" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot46" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot46" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot47" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot47" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot48" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot48" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot49" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot49" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot50" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot50" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot51" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot51" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot52" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot52" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot53" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot53" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot54" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot54" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot55" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot55" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot56" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot56" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot57" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot57" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot58" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot58" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot59" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot59" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="InventorySlot60" parent="UI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
+[node name="InventorySlot60" parent="InventoryUI/InventoryUI/ScrollContainer/GridContainer" instance=ExtResource("3_ikiii")]
 layout_mode = 2
 
-[node name="Item_Sort" type="Button" parent="UI/InventoryUI"]
+[node name="Item_Sort" type="Button" parent="InventoryUI/InventoryUI"]
 layout_mode = 0
 offset_left = 644.0
 offset_top = 602.0
@@ -1733,7 +1736,7 @@ offset_bottom = 642.0
 text = "Sort"
 icon = ExtResource("16_2u3nc")
 
-[node name="SelectedName" type="Label" parent="UI/InventoryUI"]
+[node name="SelectedName" type="Label" parent="InventoryUI/InventoryUI"]
 layout_mode = 0
 offset_left = 775.0
 offset_top = 17.0
@@ -1742,12 +1745,12 @@ offset_bottom = 66.0
 text = "Name"
 label_settings = SubResource("LabelSettings_26xuy")
 
-[node name="SelectedIcon" type="Sprite2D" parent="UI/InventoryUI"]
+[node name="SelectedIcon" type="Sprite2D" parent="InventoryUI/InventoryUI"]
 position = Vector2(870, 181)
 scale = Vector2(6.28431, 6.4895315)
 texture = ExtResource("19_26xuy")
 
-[node name="DescriptionLabel" type="Label" parent="UI/InventoryUI"]
+[node name="DescriptionLabel" type="Label" parent="InventoryUI/InventoryUI"]
 layout_mode = 0
 offset_left = 789.0
 offset_top = 300.0
@@ -1756,7 +1759,7 @@ offset_bottom = 581.0
 text = "Kaikkee tosi siistii tekstii koska pitää kokeilla että se toimii ja näyttää kivalta ja whatnot joten jos luet tätä tekstii nii älä hämmenny tää on vaan koekilu ja sitä ei lue siinä oikeessa pelissä."
 autowrap_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/InventoryUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="InventoryUI/InventoryUI"]
 layout_mode = 0
 offset_left = 987.0
 offset_top = 70.0
@@ -1764,36 +1767,95 @@ offset_right = 1068.0
 offset_bottom = 206.0
 scale = Vector2(1.6868668, 1.5522369)
 
-[node name="UnequipButton" type="Button" parent="UI/InventoryUI/VBoxContainer"]
+[node name="UnequipButton" type="Button" parent="InventoryUI/InventoryUI/VBoxContainer"]
 layout_mode = 2
 text = "Unequip"
 
-[node name="EquipButton" type="Button" parent="UI/InventoryUI/VBoxContainer"]
+[node name="EquipButton" type="Button" parent="InventoryUI/InventoryUI/VBoxContainer"]
 layout_mode = 2
 text = "Equip"
 
-[node name="ConsumeButton" type="Button" parent="UI/InventoryUI/VBoxContainer"]
+[node name="ConsumeButton" type="Button" parent="InventoryUI/InventoryUI/VBoxContainer"]
 layout_mode = 2
 text = "Consume"
 
-[node name="DropButton" type="Button" parent="UI/InventoryUI/VBoxContainer"]
+[node name="DropButton" type="Button" parent="InventoryUI/InventoryUI/VBoxContainer"]
 layout_mode = 2
 text = "Drop"
 
-[node name="DestroyButton" type="Button" parent="UI/InventoryUI/VBoxContainer"]
+[node name="DestroyButton" type="Button" parent="InventoryUI/InventoryUI/VBoxContainer"]
 layout_mode = 2
 text = "Destroy"
 
-[node name="PauseMenu" parent="." instance=ExtResource("21_bc84e")]
-process_mode = 0
-focus_mode = 2
+[node name="PauseMenuUI" type="CanvasLayer" parent="."]
 
-[connection signal="pressed" from="UI/InventoryUI/Tab_All" to="Y_sort/Player" method="_on_tab_all_pressed"]
-[connection signal="pressed" from="UI/InventoryUI/Tab_Robot_parts" to="Y_sort/Player" method="_on_tab_robot_parts_pressed"]
-[connection signal="pressed" from="UI/InventoryUI/Tab_Scrolls" to="Y_sort/Player" method="_on_tab_scrolls_pressed"]
-[connection signal="pressed" from="UI/InventoryUI/Item_Sort" to="Y_sort/Player" method="_on_item_sort_pressed"]
-[connection signal="pressed" from="UI/InventoryUI/VBoxContainer/UnequipButton" to="Y_sort/Player" method="_on_unequip_button_pressed"]
-[connection signal="pressed" from="UI/InventoryUI/VBoxContainer/EquipButton" to="Y_sort/Player" method="_on_equip_button_pressed"]
-[connection signal="pressed" from="UI/InventoryUI/VBoxContainer/ConsumeButton" to="Y_sort/Player" method="_on_consume_button_pressed"]
-[connection signal="pressed" from="UI/InventoryUI/VBoxContainer/DropButton" to="Y_sort/Player" method="_on_drop_button_pressed"]
-[connection signal="pressed" from="UI/InventoryUI/VBoxContainer/DestroyButton" to="Y_sort/Player" method="_on_destroy_button_pressed"]
+[node name="PauseMenuUI" type="Panel" parent="PauseMenuUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PausedText" type="Label" parent="PauseMenuUI/PauseMenuUI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 220.0
+grow_horizontal = 2
+text = "Game Paused"
+label_settings = SubResource("LabelSettings_bc84e")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="PauseButtons" type="VBoxContainer" parent="PauseMenuUI/PauseMenuUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 71.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinueButton" type="Button" parent="PauseMenuUI/PauseMenuUI/PauseButtons"]
+layout_mode = 2
+text = "Continue"
+
+[node name="SettingsButton" type="Button" parent="PauseMenuUI/PauseMenuUI/PauseButtons"]
+layout_mode = 2
+text = "Settings"
+
+[node name="SaveGameButton" type="Button" parent="PauseMenuUI/PauseMenuUI/PauseButtons"]
+layout_mode = 2
+text = "Save game"
+
+[node name="LoadGameButton" type="Button" parent="PauseMenuUI/PauseMenuUI/PauseButtons"]
+layout_mode = 2
+text = "Load game"
+
+[node name="QuitGameButton" type="Button" parent="PauseMenuUI/PauseMenuUI/PauseButtons"]
+layout_mode = 2
+text = "Quit game"
+
+[connection signal="pressed" from="InventoryUI/InventoryUI/Tab_All" to="Y_sort/Player" method="_on_tab_all_pressed"]
+[connection signal="pressed" from="InventoryUI/InventoryUI/Tab_Robot_parts" to="Y_sort/Player" method="_on_tab_robot_parts_pressed"]
+[connection signal="pressed" from="InventoryUI/InventoryUI/Tab_Scrolls" to="Y_sort/Player" method="_on_tab_scrolls_pressed"]
+[connection signal="pressed" from="InventoryUI/InventoryUI/Item_Sort" to="Y_sort/Player" method="_on_item_sort_pressed"]
+[connection signal="pressed" from="InventoryUI/InventoryUI/VBoxContainer/UnequipButton" to="Y_sort/Player" method="_on_unequip_button_pressed"]
+[connection signal="pressed" from="InventoryUI/InventoryUI/VBoxContainer/EquipButton" to="Y_sort/Player" method="_on_equip_button_pressed"]
+[connection signal="pressed" from="InventoryUI/InventoryUI/VBoxContainer/ConsumeButton" to="Y_sort/Player" method="_on_consume_button_pressed"]
+[connection signal="pressed" from="InventoryUI/InventoryUI/VBoxContainer/DropButton" to="Y_sort/Player" method="_on_drop_button_pressed"]
+[connection signal="pressed" from="InventoryUI/InventoryUI/VBoxContainer/DestroyButton" to="Y_sort/Player" method="_on_destroy_button_pressed"]
+[connection signal="pressed" from="PauseMenuUI/PauseMenuUI/PauseButtons/ContinueButton" to="Y_sort/Player" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="PauseMenuUI/PauseMenuUI/PauseButtons/SettingsButton" to="Y_sort/Player" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="PauseMenuUI/PauseMenuUI/PauseButtons/SaveGameButton" to="Y_sort/Player" method="_on_save_game_button_pressed"]
+[connection signal="pressed" from="PauseMenuUI/PauseMenuUI/PauseButtons/LoadGameButton" to="Y_sort/Player" method="_on_load_game_button_pressed"]
+[connection signal="pressed" from="PauseMenuUI/PauseMenuUI/PauseButtons/QuitGameButton" to="Y_sort/Player" method="_on_quit_game_button_pressed"]
