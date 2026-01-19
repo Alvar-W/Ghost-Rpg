@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=4 uid="uid://dvtw3s3fbe3ke"]
+[gd_scene load_steps=106 format=4 uid="uid://dvtw3s3fbe3ke"]
 
 [ext_resource type="Texture2D" uid="uid://o87frx4lqia3" path="res://Tileset_ground.png" id="1_tlwt5"]
 [ext_resource type="Script" uid="uid://biqdonxhv06gi" path="res://player.gd" id="2_aqk2v"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://du6y30enyd7c5" path="res://Robot_part.tres" id="17_ikiii"]
 [ext_resource type="Texture2D" uid="uid://dvsmi6gkm7rql" path="res://Placeholder32x32.png" id="19_26xuy"]
 [ext_resource type="Texture2D" uid="uid://dvcjnksnqtpqo" path="res://Scroll.png" id="19_cbp6q"]
+[ext_resource type="PackedScene" uid="uid://cdneo7qad3p6s" path="res://PauseMenu.tscn" id="21_bc84e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk2v"]
 texture = ExtResource("1_tlwt5")
@@ -1396,6 +1397,7 @@ item_data = ExtResource("17_ikiii")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="InventoryUI" type="Panel" parent="UI"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1781,6 +1783,10 @@ text = "Drop"
 [node name="DestroyButton" type="Button" parent="UI/InventoryUI/VBoxContainer"]
 layout_mode = 2
 text = "Destroy"
+
+[node name="PauseMenu" parent="." instance=ExtResource("21_bc84e")]
+process_mode = 0
+focus_mode = 2
 
 [connection signal="pressed" from="UI/InventoryUI/Tab_All" to="Y_sort/Player" method="_on_tab_all_pressed"]
 [connection signal="pressed" from="UI/InventoryUI/Tab_Robot_parts" to="Y_sort/Player" method="_on_tab_robot_parts_pressed"]

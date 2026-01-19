@@ -92,7 +92,7 @@ func show_right_panel():
 
 func _ready():
 	add_to_group("player")
-	print(inventory_ui.get_children())
+	#get_tree().get_root().print_tree_pretty()
 	create_inventory_slots()
 	for i in range(1, 10):
 		var slot = inventory_ui.get_node("Slot" + str(i))
