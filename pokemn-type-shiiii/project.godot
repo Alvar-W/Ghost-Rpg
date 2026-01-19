@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pokemn type shiiii"
-run/main_scene="uid://dvtw3s3fbe3ke"
+run/main_scene="uid://mfmvocvk73l0"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 

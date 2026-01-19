@@ -16,6 +16,7 @@ var selected_slot: Control = null
 @export var dropped_item_scene: PackedScene
 @export var PauseMenuUI: Control
 @export var Opened_Menu: bool = false
+@export var AreYouSure: Control
 
 func spawn_dropped_item(item: ItemData):
 	var drop = dropped_item_scene.instantiate()
@@ -331,4 +332,13 @@ func _on_load_game_button_pressed() -> void:
 
 
 func _on_quit_game_button_pressed() -> void:
-	pass # Replace with function body.
+	AreYouSure.visible = ! AreYouSure.visible
+
+
+#Confirm quitting the game
+func _on_confirm_pressed() -> void:
+	get_tree().quit()
+
+#Go back to the pause menu
+func _on_cancel_pressed() -> void:
+	AreYouSure.visible = ! AreYouSure.visible
