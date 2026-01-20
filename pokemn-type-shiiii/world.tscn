@@ -1805,6 +1805,7 @@ text = "Destroy"
 [node name="PauseMenuUI" type="CanvasLayer" parent="."]
 
 [node name="PauseMenuUI" type="Panel" parent="PauseMenuUI"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1901,6 +1902,7 @@ theme_override_colors/font_color = Color(0, 0.64808863, 0.16110143, 1)
 text = "Cancel"
 
 [node name="Settings" type="Panel" parent="PauseMenuUI/PauseMenuUI"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1929,12 +1931,19 @@ offset_right = 71.0
 offset_bottom = 56.0
 text = "Volume"
 
-[node name="OptionButton" type="OptionButton" parent="PauseMenuUI/PauseMenuUI/Settings"]
+[node name="WindowMode" type="OptionButton" parent="PauseMenuUI/PauseMenuUI/Settings"]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 111.0
 offset_right = 380.0
 offset_bottom = 146.0
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless"
+popup/item_2/id = 2
 
 [node name="Resolution" type="Label" parent="PauseMenuUI/PauseMenuUI/Settings"]
 layout_mode = 0
@@ -1942,7 +1951,7 @@ offset_left = 13.0
 offset_top = 83.0
 offset_right = 96.0
 offset_bottom = 106.0
-text = "Resolution"
+text = "Window mode"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_bc84e")
@@ -1965,3 +1974,4 @@ parameters/looping = true
 [connection signal="pressed" from="PauseMenuUI/PauseMenuUI/AreYouSure/Confirm" to="Y_sort/Player" method="_on_confirm_pressed"]
 [connection signal="pressed" from="PauseMenuUI/PauseMenuUI/AreYouSure/Cancel" to="Y_sort/Player" method="_on_cancel_pressed"]
 [connection signal="value_changed" from="PauseMenuUI/PauseMenuUI/Settings/Volume" to="Y_sort/Player" method="_on_volume_value_changed"]
+[connection signal="item_selected" from="PauseMenuUI/PauseMenuUI/Settings/WindowMode" to="Y_sort/Player" method="_on_window_mode_item_selected"]
