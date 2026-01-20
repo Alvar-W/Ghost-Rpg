@@ -15,8 +15,9 @@ var equipped_robot := [null, null, null]
 var selected_slot: Control = null
 @export var dropped_item_scene: PackedScene
 @export var PauseMenuUI: Control
-@export var Opened_Menu: bool = false
+var Opened_Menu: bool = false
 @export var AreYouSure: Control
+@export var SettingsMenu: Control
 
 func spawn_dropped_item(item: ItemData):
 	var drop = dropped_item_scene.instantiate()
@@ -32,11 +33,23 @@ func get_random_drop_offset() -> Vector2:
 
 func _input(event):
 	if event.is_action_pressed("inventory"):
-		inventory_ui.visible = !inventory_ui.visible
-		Opened_Menu = !Opened_Menu
+		if not Opened_Menu:
+			inventory_ui.visible = true
+			Opened_Menu = true
+		elif inventory_ui.visible:
+			inventory_ui.visible = false
+			Opened_Menu = false
 	if event.is_action_pressed("ui_cancel"):
-		PauseMenuUI.visible = !PauseMenuUI.visible
-		Opened_Menu = !Opened_Menu
+		if SettingsMenu.visible:
+			SettingsMenu.visible = false
+		elif inventory_ui.visible:
+			inventory_ui.visible = false
+			Opened_Menu = !Opened_Menu
+		else:
+			PauseMenuUI.visible = !PauseMenuUI.visible
+			SettingsMenu.visible = false
+			AreYouSure.visible = false
+			Opened_Menu = !Opened_Menu
 
 func show_item_details(item: ItemData, slot):
 	selected_item = item
@@ -320,7 +333,7 @@ func _on_continue_button_pressed() -> void:
 
 
 func _on_settings_button_pressed() -> void:
-	pass # Replace with function body.
+	SettingsMenu.visible = true
 
 
 func _on_save_game_button_pressed() -> void:
@@ -332,7 +345,7 @@ func _on_load_game_button_pressed() -> void:
 
 
 func _on_quit_game_button_pressed() -> void:
-	AreYouSure.visible = ! AreYouSure.visible
+	AreYouSure.visible = true
 
 
 #Confirm quitting the game
@@ -341,4 +354,8 @@ func _on_confirm_pressed() -> void:
 
 #Go back to the pause menu
 func _on_cancel_pressed() -> void:
-	AreYouSure.visible = ! AreYouSure.visible
+	AreYouSure.visible = false
+
+
+func _on_volume_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(0, value)

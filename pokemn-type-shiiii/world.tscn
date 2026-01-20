@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=4 uid="uid://dvtw3s3fbe3ke"]
+[gd_scene load_steps=111 format=4 uid="uid://dvtw3s3fbe3ke"]
 
 [ext_resource type="Texture2D" uid="uid://o87frx4lqia3" path="res://Tileset_ground.png" id="1_tlwt5"]
 [ext_resource type="Script" uid="uid://biqdonxhv06gi" path="res://player.gd" id="2_aqk2v"]
@@ -20,6 +20,7 @@
 [ext_resource type="Resource" uid="uid://du6y30enyd7c5" path="res://Robot_part.tres" id="17_ikiii"]
 [ext_resource type="Texture2D" uid="uid://dvsmi6gkm7rql" path="res://Placeholder32x32.png" id="19_26xuy"]
 [ext_resource type="Texture2D" uid="uid://dvcjnksnqtpqo" path="res://Scroll.png" id="19_cbp6q"]
+[ext_resource type="AudioStream" uid="uid://dwuwu62kd4wof" path="res://Audio/Music/FreakyFightSong.mp3" id="21_bc84e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk2v"]
 texture = ExtResource("1_tlwt5")
@@ -1345,6 +1346,9 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_wukud"]
 font_color = Color(0.8150196, 3.5857408e-06, 7.70092e-07, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wukud"]
+bg_color = Color(0.320889, 0.2576517, 0.1179646, 1)
+
 [node name="World" type="Node2D"]
 
 [node name="Water base" type="TileMapLayer" parent="."]
@@ -1358,13 +1362,14 @@ tile_set = SubResource("TileSet_036b0")
 [node name="Y_sort" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Player" type="CharacterBody2D" parent="Y_sort" node_paths=PackedStringArray("inventory_ui", "PauseMenuUI", "AreYouSure")]
+[node name="Player" type="CharacterBody2D" parent="Y_sort" node_paths=PackedStringArray("inventory_ui", "PauseMenuUI", "AreYouSure", "SettingsMenu")]
 script = ExtResource("2_aqk2v")
 inventory_ui = NodePath("../../InventoryUI/InventoryUI")
 slot_scene = ExtResource("3_ikiii")
 dropped_item_scene = ExtResource("14_udxuc")
 PauseMenuUI = NodePath("../../PauseMenuUI/PauseMenuUI")
 AreYouSure = NodePath("../../PauseMenuUI/PauseMenuUI/AreYouSure")
+SettingsMenu = NodePath("../../PauseMenuUI/PauseMenuUI/Settings")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Y_sort/Player"]
 position = Vector2(9.536743e-07, -12)
@@ -1800,7 +1805,6 @@ text = "Destroy"
 [node name="PauseMenuUI" type="CanvasLayer" parent="."]
 
 [node name="PauseMenuUI" type="Panel" parent="PauseMenuUI"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1896,6 +1900,54 @@ scale = Vector2(0.2030272, 0.18962131)
 theme_override_colors/font_color = Color(0, 0.64808863, 0.16110143, 1)
 text = "Cancel"
 
+[node name="Settings" type="Panel" parent="PauseMenuUI/PauseMenuUI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wukud")
+
+[node name="Volume" type="HSlider" parent="PauseMenuUI/PauseMenuUI/Settings"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 55.0
+offset_right = 384.0
+offset_bottom = 78.0
+max_value = 1.5
+step = 0.01
+value = 0.75
+
+[node name="Volume2" type="Label" parent="PauseMenuUI/PauseMenuUI/Settings"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 33.0
+offset_right = 71.0
+offset_bottom = 56.0
+text = "Volume"
+
+[node name="OptionButton" type="OptionButton" parent="PauseMenuUI/PauseMenuUI/Settings"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 111.0
+offset_right = 380.0
+offset_bottom = 146.0
+
+[node name="Resolution" type="Label" parent="PauseMenuUI/PauseMenuUI/Settings"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 83.0
+offset_right = 96.0
+offset_bottom = 106.0
+text = "Resolution"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_bc84e")
+parameters/looping = true
+
 [connection signal="pressed" from="InventoryUI/InventoryUI/Tab_All" to="Y_sort/Player" method="_on_tab_all_pressed"]
 [connection signal="pressed" from="InventoryUI/InventoryUI/Tab_Robot_parts" to="Y_sort/Player" method="_on_tab_robot_parts_pressed"]
 [connection signal="pressed" from="InventoryUI/InventoryUI/Tab_Scrolls" to="Y_sort/Player" method="_on_tab_scrolls_pressed"]
@@ -1912,3 +1964,4 @@ text = "Cancel"
 [connection signal="pressed" from="PauseMenuUI/PauseMenuUI/PauseButtons/QuitGameButton" to="Y_sort/Player" method="_on_quit_game_button_pressed"]
 [connection signal="pressed" from="PauseMenuUI/PauseMenuUI/AreYouSure/Confirm" to="Y_sort/Player" method="_on_confirm_pressed"]
 [connection signal="pressed" from="PauseMenuUI/PauseMenuUI/AreYouSure/Cancel" to="Y_sort/Player" method="_on_cancel_pressed"]
+[connection signal="value_changed" from="PauseMenuUI/PauseMenuUI/Settings/Volume" to="Y_sort/Player" method="_on_volume_value_changed"]
