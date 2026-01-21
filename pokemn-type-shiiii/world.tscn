@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=4 uid="uid://dvtw3s3fbe3ke"]
+[gd_scene load_steps=115 format=4 uid="uid://dvtw3s3fbe3ke"]
 
 [ext_resource type="Texture2D" uid="uid://o87frx4lqia3" path="res://Tileset_ground.png" id="1_tlwt5"]
 [ext_resource type="Script" uid="uid://biqdonxhv06gi" path="res://player.gd" id="2_aqk2v"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dme1ckg1n3s56" path="res://Player back left idle animation.png" id="9_2o6r5"]
 [ext_resource type="Texture2D" uid="uid://be7xi051ft4mk" path="res://Player back right idle animation.png" id="10_70uel"]
 [ext_resource type="PackedScene" uid="uid://carbq88q5gowj" path="res://ItemPickup.tscn" id="14_udxuc"]
+[ext_resource type="Resource" uid="uid://b2s4wxgmulllf" path="res://Heal.tres" id="15_ikiii"]
 [ext_resource type="Texture2D" uid="uid://b5g7ai5y4jqut" path="res://container_placeholder.png" id="16_2u3nc"]
 [ext_resource type="Resource" uid="uid://5qvxpd41ld51" path="res://Test_robot1.tres" id="16_il2jm"]
 [ext_resource type="Resource" uid="uid://dj2rar44oodq0" path="res://Test_robot2.tres" id="17_wjb0r"]
@@ -22,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dvsmi6gkm7rql" path="res://Placeholder32x32.png" id="19_26xuy"]
 [ext_resource type="Resource" uid="uid://daa5hqwqmdvj5" path="res://Test_spirit2.tres" id="19_bo7i5"]
 [ext_resource type="Texture2D" uid="uid://dvcjnksnqtpqo" path="res://Scroll.png" id="19_cbp6q"]
+[ext_resource type="PackedScene" uid="uid://dadgq15ne3jvc" path="res://Enemy.tscn" id="19_mc2jv"]
 [ext_resource type="AudioStream" uid="uid://dwuwu62kd4wof" path="res://Audio/Music/FreakyFightSong.mp3" id="21_bc84e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqk2v"]
@@ -1408,11 +1410,19 @@ item_data = ExtResource("17_wjb0r")
 
 [node name="Area2D" parent="Y_sort" instance=ExtResource("14_udxuc")]
 position = Vector2(-39, -15)
-item_data = ExtResource("18_mc2jv")
+item_data = ExtResource("15_ikiii")
 
 [node name="Area2D4" parent="Y_sort" instance=ExtResource("14_udxuc")]
 position = Vector2(-120, -11)
-item_data = ExtResource("19_bo7i5")
+item_data = ExtResource("15_ikiii")
+
+[node name="Enemy" parent="Y_sort" instance=ExtResource("19_mc2jv")]
+position = Vector2(-62, 21)
+spirit_data = ExtResource("18_mc2jv")
+
+[node name="Enemy2" parent="Y_sort" instance=ExtResource("19_mc2jv")]
+position = Vector2(64, -62)
+spirit_data = ExtResource("19_bo7i5")
 
 [node name="InventoryUI" type="CanvasLayer" parent="."]
 

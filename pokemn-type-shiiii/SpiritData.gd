@@ -11,3 +11,4 @@ class_name SpiritData
 @export var weaknesses: Array[String]
 @export var resistances: Array[String]
 @export var environment_bonus: Dictionary # biome -> multiplier
+@export var sprite_frames: SpriteFrames

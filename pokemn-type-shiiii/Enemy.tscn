@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dadgq15ne3jvc"]
+
+[ext_resource type="Script" uid="uid://b2hfw163pevoq" path="res://enemy.gd" id="1_5biem"]
+[ext_resource type="Texture2D" uid="uid://dlfrc67e3h8bp" path="res://Ice_spirit_idle.png" id="2_s7bn3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hac7"]
+atlas = ExtResource("2_s7bn3")
+region = Rect2(1, 1, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tt7e2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hac7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tt7e2"]
+size = Vector2(128, 128)
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_5biem")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8.940697e-08, -8.940697e-08)
+scale = Vector2(0.15625, 0.15625)
+sprite_frames = SubResource("SpriteFrames_tt7e2")
+frame_progress = 0.108237065
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tt7e2")

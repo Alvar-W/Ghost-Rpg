@@ -1,10 +1,77 @@
-[gd_resource type="Resource" script_class="SpiritData" load_steps=3 format=3 uid="uid://daa5hqwqmdvj5"]
+[gd_resource type="Resource" script_class="SpiritData" load_steps=13 format=3 uid="uid://daa5hqwqmdvj5"]
 
 [ext_resource type="Script" uid="uid://dxn1ev3d6ykl4" path="res://SpiritData.gd" id="1_4rh3k"]
 [ext_resource type="Texture2D" uid="uid://dvcjnksnqtpqo" path="res://Scroll.png" id="1_qd42u"]
+[ext_resource type="Texture2D" uid="uid://dlfrc67e3h8bp" path="res://Ice_spirit_idle.png" id="3_w3t7w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ha0ab"]
+atlas = ExtResource("3_w3t7w")
+region = Rect2(1, 1, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0u00"]
+atlas = ExtResource("3_w3t7w")
+region = Rect2(131, 1, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_327ep"]
+atlas = ExtResource("3_w3t7w")
+region = Rect2(261, 1, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4ehj"]
+atlas = ExtResource("3_w3t7w")
+region = Rect2(391, 1, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5qtxi"]
+atlas = ExtResource("3_w3t7w")
+region = Rect2(1, 131, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhneu"]
+atlas = ExtResource("3_w3t7w")
+region = Rect2(131, 131, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ic5l"]
+atlas = ExtResource("3_w3t7w")
+region = Rect2(261, 131, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iqdcx"]
+atlas = ExtResource("3_w3t7w")
+region = Rect2(391, 131, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xw1id"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ha0ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0u00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_327ep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4ehj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5qtxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mhneu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ic5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iqdcx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
 
 [resource]
 script = ExtResource("1_4rh3k")
+hp_mod = 38
+sprite_frames = SubResource("SpriteFrames_xw1id")
 name = "spirit"
 icon = ExtResource("1_qd42u")
 category = "spirit"
