@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RobotData" load_steps=3 format=3 uid="uid://5qvxpd41ld51"]
+
+[ext_resource type="Texture2D" uid="uid://dvsmi6gkm7rql" path="res://Placeholder32x32.png" id="1_2v0x0"]
+[ext_resource type="Script" uid="uid://kj4kk1k3fftw" path="res://RobotData.gd" id="1_7nbg2"]
+
+[resource]
+script = ExtResource("1_7nbg2")
+name = "robot"
+icon = ExtResource("1_2v0x0")
+category = "robot"
+sort_tag = "robot"
+item_type = "robot"
+description = "robot"
+metadata/_custom_type_script = "uid://kj4kk1k3fftw"

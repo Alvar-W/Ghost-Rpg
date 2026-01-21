@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://b2s4wxgmulllf"]
 
 [ext_resource type="Script" uid="uid://yueai8c6i8jb" path="res://ItemData.gd" id="1_nkyg3"]
-[ext_resource type="Texture2D" uid="uid://dvcjnksnqtpqo" path="res://Scroll.png" id="1_sselp"]
+[ext_resource type="Texture2D" uid="uid://c2s3nhgv0mdr3" path="res://icon.svg" id="1_sselp"]
 
 [resource]
 script = ExtResource("1_nkyg3")
@@ -10,4 +10,5 @@ icon = ExtResource("1_sselp")
 category = "scrolls"
 sort_tag = "scroll"
 item_type = "battle_item"
+description = "Jeejee now juu nono die it is veri nice and all yippee"
 metadata/_custom_type_script = "uid://yueai8c6i8jb"

@@ -12,12 +12,24 @@ var inventory = []
 var selected_item: ItemData = null
 var equipped_battle := [null, null, null]
 var equipped_robot := [null, null, null]
+var equipped_spirit := [null, null, null]
 var selected_slot: Control = null
 @export var dropped_item_scene: PackedScene
 @export var PauseMenuUI: Control
 var Opened_Menu: bool = false
 @export var AreYouSure: Control
 @export var SettingsMenu: Control
+
+func get_battle_units():
+	var units = []
+	for i in range(3):
+		if equipped_robot[i] != null and equipped_spirit[i] != null:
+			units.append({
+				"robot": equipped_robot[i],
+				"spirit": equipped_spirit[i],
+				"slot": i
+			})
+	return units
 
 func spawn_dropped_item(item: ItemData):
 	var drop = dropped_item_scene.instantiate()
@@ -71,12 +83,12 @@ func show_item_details(item: ItemData, slot):
 	unequip_btn.visible = false
 
 	if slot.slot_type == "inventory":
-		if item.item_type == "battle_item" or item.item_type == "robot":
+		if item.item_type == "battle_item" or item.item_type == "robot" or item.item_type == "spirit":
 			equip_btn.visible = true
 		elif item.item_type == "consumable":
 			consume_btn.visible = true
 
-	elif slot.slot_type == "battle" or slot.slot_type == "robot":
+	elif slot.slot_type == "battle" or slot.slot_type == "robot" or slot.slot_type == "spirit":
 		unequip_btn.visible = true
 
 
@@ -195,7 +207,7 @@ func remove_from_inventory(item: ItemData):
 	inventory.erase(item)
 	update_inventory_ui("all")
 
-	
+
 func equip_to_battle_slot(item: ItemData):
 	for i in range(3):
 		if equipped_battle[i] == null:
@@ -223,6 +235,19 @@ func equip_to_robot_slot(item: ItemData):
 			return
 	
 	print("No free robot slots")
+	
+func equip_to_spirit_slot(item: ItemData):
+	for i in range(3):
+		if equipped_spirit[i] == null:
+			equipped_spirit[i] = item
+			var slot = inventory_ui.get_node("Slot" + str(i + 1)) # Spirit slots 1,2,3
+			slot.item_data = item
+			slot.get_node("Icon").texture = item.icon
+			remove_from_inventory(item)
+			hide_right_panel()
+			return
+	
+	print("No free spirit slots")
 
 
 func _on_tab_all_pressed() -> void:
@@ -243,12 +268,14 @@ func _on_item_sort_pressed() -> void:
 func _on_equip_button_pressed() -> void:
 	if not selected_item:
 		return
-
 	if selected_item.item_type == "battle_item":
 		equip_to_battle_slot(selected_item)
 	elif selected_item.item_type == "robot":
 		equip_to_robot_slot(selected_item)
+	elif selected_item.item_type == "spirit":
+		equip_to_spirit_slot(selected_item)
 	hide_right_panel()
+
 
 
 
@@ -304,26 +331,22 @@ func _on_destroy_button_pressed() -> void:
 func _on_unequip_button_pressed() -> void:
 	if not selected_item or not selected_slot:
 		return
-
-	# Figure out which equipped array & index this slot belongs to
-	var slot_name := selected_slot.name   # "Slot4", "Slot7", etc
+	
+	var slot_name := selected_slot.name
 	var slot_index := int(slot_name.replace("Slot", "")) - 1
-
-	if selected_slot.slot_type == "robot":
-		# Robot slots are Slot4,5,6 → indexes 0,1,2
+	
+	if selected_slot.slot_type == "spirit":
+		equipped_spirit[slot_index] = null
+	elif selected_slot.slot_type == "robot":
 		equipped_robot[slot_index - 3] = null
 	elif selected_slot.slot_type == "battle":
-		# Battle slots are Slot7,8,9 → indexes 0,1,2
 		equipped_battle[slot_index - 6] = null
-
-	# Clear the slot visually
+	
 	selected_slot.item_data = null
 	selected_slot.get_node("Icon").texture = null
-
-	# Put back in inventory
+	
 	inventory.append(selected_item)
 	update_inventory_ui("all")
-
 	hide_right_panel()
 
 

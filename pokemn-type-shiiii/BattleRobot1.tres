@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bwk4dwc0lv3ye"]
+
+[ext_resource type="Script" uid="uid://yueai8c6i8jb" path="res://ItemData.gd" id="1_dhvvg"]
+[ext_resource type="Texture2D" uid="uid://dvsmi6gkm7rql" path="res://Placeholder32x32.png" id="1_dw5a6"]
+
+[resource]
+script = ExtResource("1_dhvvg")
+name = "BattleRobot"
+icon = ExtResource("1_dw5a6")
+category = "BattleRobot"
+sort_tag = "BAttleRobot"
+item_type = "BattleRobot"
+description = "Bliibliibluubluu"
+metadata/_custom_type_script = "uid://yueai8c6i8jb"

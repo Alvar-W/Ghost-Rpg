@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var item_data: ItemData   # <-- make it exported
+@export var item_data: ItemData
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 
