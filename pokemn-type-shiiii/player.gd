@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-@export var max_speed := 85
-@export var acceleration := 850
-@export var friction := 850
+@export var max_speed := 400
+@export var acceleration := 4000
+@export var friction := 4000
 var last_dir := "up"
 @onready var anim := $AnimatedSprite2D
 var inventory = []
@@ -44,6 +44,8 @@ func get_random_drop_offset() -> Vector2:
 	return Vector2(cos(angle), sin(angle)) * radius
 
 func _input(event):
+	if event.is_action_pressed("ui_debug_spirit"):
+		give_test_spirit()
 	if event.is_action_pressed("inventory"):
 		if not Opened_Menu:
 			inventory_ui.visible = true
@@ -392,3 +394,13 @@ func _on_window_mode_item_selected(index: int) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		2:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
+
+
+func _on_area_detect_body_entered(body: Node2D) -> void:
+	if body.is_in_group("spirit"):
+		body.start_group_combat()
+
+
+func give_test_spirit():
+	var spirit = preload("res://Debug Spirit.tres")
+	add_item(spirit)

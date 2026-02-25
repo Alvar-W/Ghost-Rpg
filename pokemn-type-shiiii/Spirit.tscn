@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://dadgq15ne3jvc"]
+
+[ext_resource type="Script" uid="uid://b2hfw163pevoq" path="res://spirit.gd" id="1_5biem"]
+[ext_resource type="Texture2D" uid="uid://ch3urdka4k6ck" path="res://White_ball128x128.png" id="2_4yvx5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0k3i"]
+radius = 6.0827627
+
+[sub_resource type="Gradient" id="Gradient_v0k3i"]
+offsets = PackedFloat32Array(0, 0.71653545, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.6860228, 0, 0.23983419, 1, 0.6860228, 0, 0.23983419, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4yvx5"]
+gradient = SubResource("Gradient_v0k3i")
+
+[sub_resource type="Curve" id="Curve_v0k3i"]
+_limits = [0.06741583, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, -2.224271e-07, 0, 0, Vector2(1, 0.06741583), 0.250501, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4yvx5"]
+curve = SubResource("Curve_v0k3i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v0k3i"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(15, 15, 1)
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.099999994
+scale_max = 0.099999994
+scale_curve = SubResource("CurveTexture_4yvx5")
+color_ramp = SubResource("GradientTexture1D_4yvx5")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4yvx5"]
+radius = 200.0
+
+[node name="Spirit" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+platform_floor_layers = 4294901760
+script = ExtResource("1_5biem")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v0k3i")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 200
+texture = ExtResource("2_4yvx5")
+lifetime = 2.0
+speed_scale = 1.7
+process_material = SubResource("ParticleProcessMaterial_v0k3i")
+
+[node name="AggroScan" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroScan"]
+shape = SubResource("CircleShape2D_4yvx5")

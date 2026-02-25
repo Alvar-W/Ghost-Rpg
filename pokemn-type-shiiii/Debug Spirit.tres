@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SpiritData" load_steps=3 format=3 uid="uid://cci04o7pxglw6"]
+
+[ext_resource type="Script" uid="uid://dxn1ev3d6ykl4" path="res://SpiritData.gd" id="1_anghn"]
+[ext_resource type="Texture2D" uid="uid://dwomkpefditph" path="res://Ice_spirit_ball.png" id="1_h0ju2"]
+
+[resource]
+script = ExtResource("1_anghn")
+hp_mod = 40
+damage_mod = 20.0
+speed_mod = 5
+element = "Neutral"
+accuracy = 3.0
+mana_max = 6
+name = "TestSpirit"
+icon = ExtResource("1_h0ju2")
+category = "spirit"
+sort_tag = "spirit"
+item_type = "spirit"
+description = "spirit"
+metadata/_custom_type_script = "uid://dxn1ev3d6ykl4"

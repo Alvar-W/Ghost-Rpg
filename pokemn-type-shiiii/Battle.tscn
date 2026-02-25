@@ -1,17 +1,15 @@
-[gd_scene load_steps=78 format=3 uid="uid://er7c0dsch6ry"]
+[gd_scene load_steps=76 format=3 uid="uid://er7c0dsch6ry"]
 
-[ext_resource type="Script" uid="uid://de1ep5xspxl7q" path="res://battle.gd" id="1_83ubk"]
+[ext_resource type="Script" uid="uid://bp0nkot6qdcxp" path="res://battle.gd" id="1_83ubk"]
 [ext_resource type="Texture2D" uid="uid://cyqftcmfb1jue" path="res://Player front idle animation.png" id="2_w0ll1"]
 [ext_resource type="Texture2D" uid="uid://dnje68uejo846" path="res://Player front left idle animation.png" id="3_0500f"]
-[ext_resource type="Resource" uid="uid://dqndxodxfx7he" path="res://BattleRobot2.tres" id="4_fmwbo"]
 [ext_resource type="Texture2D" uid="uid://dnqsnodu3c2v6" path="res://Player front right idle animation.png" id="4_sqcgj"]
-[ext_resource type="Resource" uid="uid://bs1pw0rupt5qf" path="res://BattleRobot3.tres" id="5_8eejf"]
 [ext_resource type="Texture2D" uid="uid://drf13pn0davfs" path="res://Player left idle animation.png" id="5_ix2yc"]
 [ext_resource type="Texture2D" uid="uid://cpkxjmcdsr3x2" path="res://Player right idle animation.png" id="6_fmwbo"]
 [ext_resource type="Texture2D" uid="uid://dohcdf7ho6qol" path="res://Player back idle animation.png" id="7_8eejf"]
 [ext_resource type="Texture2D" uid="uid://dme1ckg1n3s56" path="res://Player back left idle animation.png" id="8_q2vb4"]
 [ext_resource type="Texture2D" uid="uid://be7xi051ft4mk" path="res://Player back right idle animation.png" id="9_t2xxn"]
-[ext_resource type="PackedScene" uid="uid://carbq88q5gowj" path="res://ItemPickup.tscn" id="10_0500f"]
+[ext_resource type="Texture2D" uid="uid://dwomkpefditph" path="res://Ice_spirit_ball.png" id="10_w0ll1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dwbse"]
 atlas = ExtResource("2_w0ll1")
@@ -516,24 +514,173 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Robot1" parent="CanvasLayer/Panel" instance=ExtResource("10_0500f")]
-position = Vector2(174, 350.00003)
-scale = Vector2(2.5, 2.5128884)
-monitorable = false
-
-[node name="Robot2" parent="CanvasLayer/Panel" instance=ExtResource("10_0500f")]
-position = Vector2(280.00003, 445)
-scale = Vector2(2.8852458, 2.8654253)
-item_data = ExtResource("4_fmwbo")
-
-[node name="Robot3" parent="CanvasLayer/Panel" instance=ExtResource("10_0500f")]
-position = Vector2(339, 580)
-scale = Vector2(3.339562, 3.3305094)
-item_data = ExtResource("5_8eejf")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/Panel"]
 z_index = 10
 position = Vector2(82.00001, 513)
 scale = Vector2(2.775879, 3.5361328)
 sprite_frames = SubResource("SpriteFrames_n2hxx")
 animation = &"idle_up_right"
+
+[node name="PlayerSlots" type="Control" parent="CanvasLayer/Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slot1" type="VBoxContainer" parent="CanvasLayer/Panel/PlayerSlots"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 257.0
+offset_right = 214.0
+offset_bottom = 390.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/PlayerSlots/Slot1"]
+layout_mode = 2
+text = "Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/PlayerSlots/Slot1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/PlayerSlots/Slot1"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("10_w0ll1")
+
+[node name="Slot2" type="VBoxContainer" parent="CanvasLayer/Panel/PlayerSlots"]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 357.0
+offset_right = 311.0
+offset_bottom = 495.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/PlayerSlots/Slot2"]
+layout_mode = 2
+text = "Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/PlayerSlots/Slot2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/PlayerSlots/Slot2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("10_w0ll1")
+
+[node name="Slot3" type="VBoxContainer" parent="CanvasLayer/Panel/PlayerSlots"]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 477.0
+offset_right = 426.0
+offset_bottom = 615.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/PlayerSlots/Slot3"]
+layout_mode = 2
+text = "Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/PlayerSlots/Slot3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/PlayerSlots/Slot3"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("10_w0ll1")
+
+[node name="EnemySlots" type="Control" parent="CanvasLayer/Panel"]
+anchors_preset = 0
+offset_left = 665.0
+offset_top = 127.0
+offset_right = 963.0
+offset_bottom = 349.0
+
+[node name="Enemy1" type="VBoxContainer" parent="CanvasLayer/Panel/EnemySlots"]
+layout_mode = 0
+offset_left = -299.0
+offset_top = -127.0
+offset_right = -219.0
+offset_bottom = 11.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/EnemySlots/Enemy1"]
+layout_mode = 2
+text = "Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/EnemySlots/Enemy1"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/EnemySlots/Enemy1"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("10_w0ll1")
+
+[node name="Enemy2" type="VBoxContainer" parent="CanvasLayer/Panel/EnemySlots"]
+layout_mode = 0
+offset_left = -203.0
+offset_top = -16.0
+offset_right = -123.0
+offset_bottom = 122.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/EnemySlots/Enemy2"]
+layout_mode = 2
+text = "Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/EnemySlots/Enemy2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/EnemySlots/Enemy2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("10_w0ll1")
+
+[node name="Enemy3" type="VBoxContainer" parent="CanvasLayer/Panel/EnemySlots"]
+layout_mode = 0
+offset_left = -89.0
+offset_top = 83.0
+offset_right = -9.0
+offset_bottom = 221.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/EnemySlots/Enemy3"]
+layout_mode = 2
+text = "Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/EnemySlots/Enemy3"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/EnemySlots/Enemy3"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("10_w0ll1")
+
+[node name="Enemy4" type="VBoxContainer" parent="CanvasLayer/Panel/EnemySlots"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 125.0
+offset_right = 128.0
+offset_bottom = 263.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/EnemySlots/Enemy4"]
+layout_mode = 2
+text = "Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/EnemySlots/Enemy4"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/EnemySlots/Enemy4"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("10_w0ll1")
+
+[node name="Enemy5" type="VBoxContainer" parent="CanvasLayer/Panel/EnemySlots"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 160.0
+offset_right = 270.0
+offset_bottom = 298.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/EnemySlots/Enemy5"]
+layout_mode = 2
+text = "Name"
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/EnemySlots/Enemy5"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/EnemySlots/Enemy5"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("10_w0ll1")
